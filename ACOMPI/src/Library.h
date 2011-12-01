@@ -10,7 +10,13 @@
 
 #include <iostream>
 #include <string>
+#include <math.h>
+#include "Util.h"
 #include "distance/Distance.h"
+#include "distance/CeilDistance.h"
+#include "distance/GeoDistance.h"
+#include "distance/AttDistance.h"
+
 using namespace std;
 
 

@@ -16,7 +16,11 @@ Distance::~Distance() {
 	// TODO Auto-generated destructor stub
 }
 
-long Distance::compute(long x, long y){
+long Distance::compute(long i, long j, DataStructure::Point *nodeptr) {
+	double xd = nodeptr[i].x - nodeptr[j].x;
+	double yd = nodeptr[i].y - nodeptr[j].y;
+	double r = sqrt(xd * xd + yd * yd) + 0.5;
 
-return 0;
+	return (long int) r;
 }
+

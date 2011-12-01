@@ -8,7 +8,10 @@
 #include "Ants.h"
 
 Ants::Ants() {
-	// TODO Auto-generated constructor stub
+	//get this from params
+	number_of_ants = 50;
+	nearest_neighbourhood = 20;
+	nearest_neighbour_localsearch = 20;
 
 }
 

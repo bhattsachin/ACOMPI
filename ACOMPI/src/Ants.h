@@ -9,6 +9,20 @@
 #define ANTS_H_
 
 class Ants {
+
+public:
+	struct Ant {
+		long *tour;
+		char *visited;
+		long tour_length;
+	};
+
+	Ant *ant; /* this (array of) struct will hold the colony */
+	int number_of_ants;
+	double   *prob_of_selection;
+	long nearest_neighbourhood;
+	long nearest_neighbour_localsearch;
+
 public:
 	Ants();
 	virtual ~Ants();

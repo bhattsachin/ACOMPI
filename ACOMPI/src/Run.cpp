@@ -7,8 +7,10 @@
 
 #include <iostream>
 #include <mpi.h>
+#include "AcoRun.h"
 
 using namespace std;
+using namespace MPI;
 
 int main(int argc, char **argv) {
 
@@ -17,8 +19,100 @@ int main(int argc, char **argv) {
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
-	if(rank==0)
+	AcoRun run;
+
+
+	/**
+	 * playing with datatype
+	 */
+
+	/**
+	Datatype POINT;
+	Status Info;
+
+	POINT=DOUBLE.Create_contiguous(2);
+	POINT.Commit();
+
+
+
+
+
+
+
+	if(rank==0){
+		Cities::Point pt;
+			pt.x = 23;
+			pt.y = 26;
+			cout<<"sending from node zero:"<<pt.x<<" "<<pt.y<<endl;
+			COMM_WORLD.Send(&pt,1,POINT,1,52);
+
+	}else{
+		Cities::Point pt2;
+			pt2.x = 2;
+			pt2.y = 6;
+			cout<<"before receiving node one: "<<pt2.x<<" "<<pt2.y<<endl;
+			COMM_WORLD.Recv(&pt2,1,POINT,0,52,Info);
+			cout<<"after receiving node one: "<<pt2.x<<" "<<pt2.y<<endl;
+	}
+
+
+
+
+
+	Datatype TWO_DIM;
+	TWO_DIM=LONG.Create_vector(532,1,532);
+	TWO_DIM.Commit();
+
+
+
+
+
+
+
+	*/
+
+
+
+
+
+	/**
+	 * game over
+	 */
+
+
+	if(rank==0){
 		cout << "# aco min max algorithm" << endl;
+
+		run.init(argc, argv);
+		run.initAllNodes(run.cities);
+	}
+
+
+	//more games
+
+	/**
+
+	if(rank==0){
+
+				cout<<"sending 2 dimensional from node zero:"<<run.cities.instance.distance[0][531]<<endl;
+
+				COMM_WORLD.Send(&run.cities.instance.distance[0][531],1,TWO_DIM,1,52);
+
+		}else{
+			cout<<"is it ok"<<endl;
+			long distanc[532][532];
+			COMM_WORLD.Recv(&distanc[0][531],1,TWO_DIM,0,52,Info);
+			cout<<"receiving 2 dimensional at node 1:"<<distanc[0][531]<<endl;
+
+		}
+
+	*/
+
+	//game ends
+
+
+
+
 
 	MPI_Finalize();
 

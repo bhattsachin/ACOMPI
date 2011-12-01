@@ -15,7 +15,7 @@ class FileReader {
 public:
 	FileReader();
 	virtual ~FileReader();
-	Cities::Point * readFile(const char *fileName, Cities cities);
+	void readFile(const char *fileName, Cities *cities);
 };
 
 #endif /* FILEREADER_H_ */
