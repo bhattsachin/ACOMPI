@@ -59,9 +59,6 @@ int main(int argc, char **argv) {
 
 
 
-	Datatype TWO_DIM;
-	TWO_DIM=LONG.Create_vector(532,1,532);
-	TWO_DIM.Commit();
 
 
 
@@ -71,6 +68,10 @@ int main(int argc, char **argv) {
 
 	*/
 
+	Status Info;
+	Datatype TWO_DIM;
+	TWO_DIM=LONG.Create_vector(532,1,532);
+	TWO_DIM.Commit();
 
 
 
@@ -79,34 +80,66 @@ int main(int argc, char **argv) {
 	 * game over
 	 */
 
+	long max_tries = 1000;
 
 	if(rank==0){
 		cout << "# aco min max algorithm" << endl;
 
 		run.init(argc, argv);
+		cout<<"this is fine:"<<endl;
 		run.initAllNodes(run.cities);
+		cout<<"ist this fine2"<<endl;
+
+		for ( run.solution.number_of_tries = 0 ; run.solution.number_of_tries < max_tries ; run.solution.number_of_tries++ ) {
+
+			run.initializeTry(run.solution.number_of_tries);
+
+			while ( !run.termination_condition(max_tries) ) {
+
+			    run.construct_solutions();
+
+			    //if ( ls_flag > 0 )
+				//local_search();
+
+			    run.update_statistics();
+
+			    run.pheromone_trail_update();
+
+			    //search_control_and_statistics();
+
+			    run.solution.iteration++;
+			}
+			run.exit_try(run.solution.number_of_tries);
+		    }
+		   // exit_program();
+
+
+
+
+
+
 	}
 
 
 	//more games
 
-	/**
+/**
 
 	if(rank==0){
 
 				cout<<"sending 2 dimensional from node zero:"<<run.cities.instance.distance[0][531]<<endl;
 
-				COMM_WORLD.Send(&run.cities.instance.distance[0][531],1,TWO_DIM,1,52);
+				COMM_WORLD.Send(&run.cities.instance.distance,1,TWO_DIM,1,52);
 
 		}else{
 			cout<<"is it ok"<<endl;
 			long distanc[532][532];
-			COMM_WORLD.Recv(&distanc[0][531],1,TWO_DIM,0,52,Info);
+			COMM_WORLD.Recv(&distanc,1,TWO_DIM,0,52,Info);
 			cout<<"receiving 2 dimensional at node 1:"<<distanc[0][531]<<endl;
 
 		}
 
-	*/
+*/
 
 	//game ends
 
@@ -115,7 +148,7 @@ int main(int argc, char **argv) {
 
 
 	MPI_Finalize();
-
+	cout<<"program ends:"<<endl;
 
 
 }

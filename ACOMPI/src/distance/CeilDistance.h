@@ -14,7 +14,7 @@ class CeilDistance : public Distance{
 public:
 	CeilDistance();
 	virtual ~CeilDistance();
-	long compute(long x, long y, DataStructure::Point *nodeptr);
+	virtual long compute(long x, long y, DataStructure::Point *nodeptr);
 };
 
 #endif /* CEILDISTANCE_H_ */

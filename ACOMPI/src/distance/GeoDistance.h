@@ -14,7 +14,7 @@ class GeoDistance : public Distance{
 public:
 	GeoDistance();
 	virtual ~GeoDistance();
-	long compute(long x, long y, DataStructure::Point *nodeptr);
+	virtual long compute(long x, long y, DataStructure::Point *nodeptr);
 };
 
 #endif /* GEODISTANCE_H_ */

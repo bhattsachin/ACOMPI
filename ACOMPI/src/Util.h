@@ -8,6 +8,8 @@
 #ifndef UTIL_H_
 #define UTIL_H_
 
+#include<iostream>
+
 
 #define INFTY                 LONG_MAX
 
@@ -39,6 +41,9 @@ public:
 
 	void sort2(long int v[], long int v2[], long int left, long int right);
 	void swap2(long int v[], long int v2[], long int i, long int j);
+	double ** generate_double_matrix( long int n, long int m);
+	double generate_random_value( long *idum );
+
 
 };
 

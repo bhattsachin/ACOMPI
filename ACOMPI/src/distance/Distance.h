@@ -14,10 +14,11 @@
 class Distance {
 
 public:
-	long compute(long x, long y, DataStructure::Point *nodeptr);
+	virtual long compute(long x, long y, DataStructure::Point *nodeptr);
 public:
 	Distance();
 	virtual ~Distance();
+
 
 	static double dtrunc (double x)
 	{

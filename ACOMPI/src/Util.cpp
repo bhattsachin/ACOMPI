@@ -56,3 +56,34 @@ void Util::swap2(long int v[], long int v2[], long int i, long int j)
   v2[i] = v2[j];
   v2[j] = tmp;
 }
+
+double ** Util::generate_double_matrix( long n, long m){
+
+  long i;
+  double **matrix;
+
+  if((matrix = (double **)malloc(sizeof(double) * n * m +
+		      sizeof(double *) * n	 )) == NULL){
+    printf("Out of memory, exit.");
+    exit(1);
+  }
+  for ( i = 0 ; i < n ; i++ ) {
+    matrix[i] = (double *)(matrix + n) + i*m;
+  }
+  return matrix;
+}
+
+/**
+ * generate a random number that is uniformly distributed in [0,1]
+ */
+double Util::generate_random_value( long *idum ){
+  long k;
+  double ans;
+
+  k =(*idum)/IQ;
+  *idum = IA * (*idum - k * IQ) - IR * k;
+  if (*idum < 0 ) *idum += IM;
+  ans = AM * (*idum);
+  return ans;
+}
+

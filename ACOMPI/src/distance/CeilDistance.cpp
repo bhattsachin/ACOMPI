@@ -16,7 +16,7 @@ CeilDistance::~CeilDistance() {
 	// TODO Auto-generated destructor stub
 }
 
-long Distance::compute(long i, long j, DataStructure::Point *nodeptr){
+long CeilDistance::compute(long i, long j, DataStructure::Point *nodeptr){
 	double xd = nodeptr[i].x - nodeptr[j].x;
 	    double yd = nodeptr[i].y - nodeptr[j].y;
 	    double r  = sqrt(xd*xd + yd*yd) + 0.000000001;
